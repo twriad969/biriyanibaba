@@ -21,9 +21,33 @@ export const initDb = async () => {
         upvotes INTEGER DEFAULT 0,
         downvotes INTEGER DEFAULT 0,
         created_at TEXT DEFAULT (datetime('now')),
-        date TEXT NOT NULL
+        date TEXT NOT NULL,
+        category TEXT DEFAULT '🍛',
+        expiry_date TEXT,
+        contact_name TEXT,
+        contact_number TEXT
       )
     `);
+    
+    // Add columns if they don't exist (for existing databases)
+    const columns = [
+      { name: 'category', type: 'TEXT DEFAULT \'🍛\'' },
+      { name: 'expiry_date', type: 'TEXT' },
+      { name: 'contact_name', type: 'TEXT' },
+      { name: 'contact_number', type: 'TEXT' }
+    ];
+
+    for (const col of columns) {
+      try {
+        await db.execute(`ALTER TABLE locations ADD COLUMN ${col.name} ${col.type}`);
+        console.log(`Added column ${col.name}`);
+      } catch (e) {
+        // Ignore error if column already exists
+        if (!e.message.includes('duplicate column name')) {
+          console.error(`Error adding column ${col.name}:`, e);
+        }
+      }
+    }
     
     await db.execute(`
       CREATE TABLE IF NOT EXISTS comments (
@@ -34,7 +58,7 @@ export const initDb = async () => {
         FOREIGN KEY (location_id) REFERENCES locations(id)
       )
     `);
-    console.log("Database initialized with comments table");
+    console.log("Database initialized with comments table and new columns");
   } catch (error) {
     console.error("Database initialization failed:", error);
   }
