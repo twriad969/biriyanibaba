@@ -1,60 +1,67 @@
-# Biriyani Hunter (Biriyani Zone) 🍛📍
+# Biriyani Hunter
+### Community-Driven Aid Distribution Mapping
 
-**Biriyani Hunter** is a community-driven mobile-first web application designed to help people in Bangladesh (specifically Dhaka) find and share locations where free food or aid is being distributed. The app aims to connect those in need with generous donors and community efforts through real-time mapping and crowd-sourced data.
+**Biriyani Hunter** (Biriyani Zone) is a high-performance, mobile-first platform engineered to coordinate community aid across Bangladesh. By leveraging real-time geospatial data, it connects donors with those in need, streamlining the distribution of food and essential resources through a verified, crowd-sourced intelligence layer.
 
-## ✨ Key Features
+---
 
-- **📍 Real-time Map Interface**: Visualize food distribution points using an interactive map powered by Leaflet and OpenStreetMap.
-- **🕌 Mosque Detector**: Automatically detects nearby mosques using the Overpass API, allowing users to easily add them as food distribution spots.
-- **🗳️ Community Moderation**: A robust voting system to ensure data accuracy.
-  - **10+ Downvotes**: Listing is automatically blurred as potential spam.
-  - **20+ Downvotes**: Listing is automatically deleted to maintain quality.
-- **⏳ Smart Expiry**: Users can set an expiry date for their listings. Listings automatically disappear after they are no longer valid (default: 1 day).
-- **📱 Mobile-First Design**: Built with a premium, responsive UI featuring both Dark and Light modes.
-- **👤 Contact Info**: View and share contact details for each spot to facilitate direct communication.
-- **📅 Date Filtering**: Easily switch between today's and yesterday's updates.
-- **💾 Offline Capabilities**: Built using Capacitor for potential mobile deployment and local database management.
+## Core Infrastructure
 
-## 🛠️ Tech Stack
+### 📍 Real-time Geospatial Intelligence
+Interactive mapping interface built on Leaflet and OpenStreetMap, providing sub-meter precision for distribution points.
 
-- **Frontend**: React, Vite, Tailwind CSS, Framer Motion
-- **Icons**: Lucide-React
-- **Maps**: React-Leaflet, Leaflet.js
-- **Native/Mobile**: Capacitor (Geolocation, Share API)
-- **Database**: Local storage and structured DB integration for persistent data.
-- **APIs**: OpenStreetMap (Nominatim), Overpass API (Mosque detection).
+### 🕌 Automated Landmark Detection
+Integrated Mosque Detector utilizing the Overpass API to autonomously identify and suggest potential distribution hubs within a user's vicinity.
 
-## 🚀 Getting Started
+### 🗳️ Decentralized Moderation
+A self-regulating ecosystem powered by community consensus:
+- **Spam Mitigation**: Listings with 10+ downvotes are automatically obfuscated.
+- **Auto-Purge**: Listings with 20+ downvotes are permanently excised from the database.
 
-### Prerequisites
+### ⏳ Temporal Dynamics
+Intelligent listing lifecycle management. Resources are programmed with custom expiry parameters, defaulting to a 24-hour cycle to ensure information freshness and relevance.
 
-- Node.js (Latest LTS recommended)
-- npm or yarn
+### 📱 Adaptive Architecture
+Premium, responsive UI architecture featuring high-contrast Dark and Light modes, optimized for field use on mobile devices via Capacitor.
 
-### Installation
+---
 
-1. Clone the repository:
+## Technology Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React, Vite, Framer Motion |
+| **Styling** | Tailwind CSS |
+| **Geospatial** | Leaflet, React-Leaflet, Overpass API |
+| **Mobile Bridge** | Capacitor (Geolocation, Share API) |
+| **Persistence** | Structured Local DB, LocalStorage |
+
+---
+
+## Deployment & Development
+
+### Infrastructure Setup
+
+1. **Clone & Initialize**
    ```bash
    git clone https://github.com/ronoksheik/biriyani-dibe.git
    cd "biriyani dibe"
    ```
 
-2. Install dependencies:
+2. **Dependency Management**
    ```bash
    npm install
    ```
 
-3. Run the development server:
+3. **Runtime**
    ```bash
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`.
-
-## 📱 Mobile Build (APK)
-
-This project is configured with GitHub Actions to automatically build Android APKs. Check the `.github/workflows/build-apk.yml` for more details.
+### Mobile Distribution
+Automated Android builds are handled via integrated GitHub Actions. Refer to `.github/workflows/build-apk.yml` for CI/CD specifications.
 
 ---
 
-Made with ❤️ for the community. #BiriyaniZone #BZone #CommunityPower #DhakaHelper
+Built for the community. Developed for impact.
+`#BiriyaniZone` `#BZone` `#CommunityPower` `#DhakaHelper`
