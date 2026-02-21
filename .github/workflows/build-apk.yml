@@ -20,9 +20,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: |
-          rm -f package-lock.json
-          npm install --no-audit --no-fund
+        run: npm install --no-audit --no-fund
 
       - name: Build Vite app
         run: npm run build
