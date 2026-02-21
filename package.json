@@ -8,6 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "mobile:start": "cd mobile && npx expo start",
+    "mobile:build": "cd mobile && npx eas build -p android --profile preview",
     "build:android": "npm run build && npx cap sync android",
     "open:android": "npx cap open android",
     "sync": "npx cap sync"

@@ -814,6 +814,10 @@ const MosquePlusIcon = L.divIcon({
               animate={{ height: sheetSnap === 0 ? 0 : `${sheetSnap * 100}%` }}
               onDragEnd={(e, info) => {
                 if (info.offset.y < -50) setSheetSnap(0.92);
+                else if (info.offset.y > 150) {
+                  setSheetSnap(0);
+                  setSelectedLocation(null);
+                }
                 else if (info.offset.y > 50) setSheetSnap(0.25);
               }}
               className={`bottom-sheet flex flex-col ${isDarkMode ? 'bg-[#12121a] border-white/5' : 'bg-white border-slate-200 shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.1)]'} border-t rounded-t-[40px]`}
@@ -836,7 +840,16 @@ const MosquePlusIcon = L.divIcon({
                       </div>
                       <div className="flex gap-2">
                         <button onClick={() => handleShare(selectedLocation)} className={`p-4 rounded-2xl ${isDarkMode ? 'bg-white/5 text-slate-400' : 'bg-slate-100 text-slate-500'} active:scale-95 transition-transform`}><Share2 size={24} /></button>
-                        <button onClick={() => { setSelectedLocation(null); setSheetSnap(0.25); }} className={`p-4 rounded-2xl ${isDarkMode ? 'bg-white/5 text-slate-400' : 'bg-slate-100 text-slate-500'} active:scale-95 transition-transform`}><X size={24} /></button>
+                        <button 
+                          onClick={(e) => { 
+                            e.stopPropagation(); 
+                            setSelectedLocation(null); 
+                            setSheetSnap(0); 
+                          }} 
+                          className={`p-4 rounded-2xl ${isDarkMode ? 'bg-white/5 text-slate-400' : 'bg-slate-100 text-slate-500'} active:scale-95 transition-transform`}
+                        >
+                          <X size={24} />
+                        </button>
                       </div>
                     </div>
                     
@@ -910,12 +923,23 @@ const MosquePlusIcon = L.divIcon({
                   </motion.div>
                 ) : (
                   <motion.div key="listing" className="flex flex-col h-full">
-                    <div className={`px-6 py-5 flex items-center justify-between border-b ${isDarkMode ? 'border-white/5' : 'border-slate-100 bg-white rounded-t-[40px]'}`}>
+            <div className={`px-6 py-5 flex items-center justify-between border-b ${isDarkMode ? 'border-white/5' : 'border-slate-100 bg-white rounded-t-[40px]'}`}>
                       <div className="flex flex-col">
                         <h2 className={`text-xl font-black ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{toBengaliNumber(filteredLocations.length)}টি স্পট পাওয়া গেছে</h2>
                         <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest">{selectedDate === new Date().toISOString().split('T')[0] ? 'আজকের আপডেট' : 'গতকালের আপডেট'}</p>
                       </div>
-                      <button onClick={() => setSheetSnap(0.92)} className={`p-3 rounded-2xl transition-all active:scale-90 ${isDarkMode ? 'bg-white/5 text-slate-400' : 'bg-slate-100 text-slate-400'}`}><ListIcon size={20}/></button>
+                      <div className="flex gap-2">
+                        <button onClick={() => setSheetSnap(0.92)} className={`p-3 rounded-2xl transition-all active:scale-90 ${isDarkMode ? 'bg-white/5 text-slate-400' : 'bg-slate-100 text-slate-400'}`}><ListIcon size={20}/></button>
+                        <button 
+                          onClick={() => { 
+                            setSheetSnap(0); 
+                            setSelectedLocation(null);
+                          }} 
+                          className={`p-3 rounded-2xl transition-all active:scale-90 ${isDarkMode ? 'bg-white/5 text-slate-400' : 'bg-slate-100 text-slate-400'}`}
+                        >
+                          <X size={20}/>
+                        </button>
+                      </div>
                     </div>
                     <div className={`flex-1 overflow-y-auto px-6 pb-24 scroll-container ${isDarkMode ? '' : 'bg-white'}`}>
                       {filteredLocations.map(loc => (
