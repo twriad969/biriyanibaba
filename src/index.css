@@ -233,51 +233,145 @@ code, .font-mono {
   100% { transform: scale(3); opacity: 0; }
 }
 
-/* Marker Styling */
-.marker-container {
-  width: 44px;
-  height: 44px;
-  background: #12121a;
-  border: 2px solid rgba(255,255,255,0.1);
-  border-radius: 16px;
+/* Custom Pin Style (Matching Image) */
+.marker-pin-custom {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-
-.marker-container.selected {
-  border-color: #f5a623;
-  transform: scale(1.15) translateY(-5px);
-  z-index: 1000;
-}
-
-.marker-inner {
-  width: 36px;
-  height: 36px;
-  background: color-mix(in srgb, var(--color) 15%, transparent);
-  color: var(--color);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-
-.marker-container .badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #10b981;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: 900;
-  border: 2px solid #12121a;
+  border: 2px solid white;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.marker-pin-custom::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: var(--pin-color, #f5a623);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.pin-inner {
+  transform: rotate(45deg);
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marker-pin-custom.selected {
+  transform: rotate(-45deg) scale(1.2);
+  z-index: 1000 !important;
+}
+
+/* Custom Popup Style (Matching Image) */
+.leaflet-popup-content-wrapper {
+  background: white !important;
+  color: #333 !important;
+  border-radius: 20px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 280px !important;
+}
+
+.popup-header {
+  background: #f5a623;
+  padding: 12px 16px;
+  color: white;
+}
+
+.popup-body {
+  padding: 16px;
+  background: white;
+}
+
+.popup-footer {
+  padding: 0 16px 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.vote-btn-green {
+  background: #e6f7ef;
+  color: #10b981;
+  flex: 1;
+  padding: 8px;
+  border-radius: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.vote-btn-red {
+  background: #feeeee;
+  color: #ef4444;
+  flex: 1;
+  padding: 8px;
+  border-radius: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* Dark Mode Overrides */
+.light body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.light .bottom-tab-bar {
+  background: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.light .tab-item {
+  color: #64748b;
+}
+
+.light .bottom-sheet {
+  background: white;
+}
+
+.light .marker-pin-custom {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Suggestion Pins */
+.mosque-suggest-pin {
+  width: 28px;
+  height: 28px;
+  background: #6366f1;
+  border: 2px solid white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+  transition: all 0.2s;
+}
+
+.mosque-suggest-pin:active {
+  transform: scale(0.9);
 }
 
 /* Category Filter Layout */
@@ -308,11 +402,38 @@ input, select, textarea {
   filter: saturate(0.5) brightness(0.6) invert(1) hue-rotate(180deg) contrast(1.1);
 }
 
-/* Font Smoothing */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Scrolling Fixes */
+.scroll-container {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
+
+/* Fix for safe area bottom nav */
+.safe-p-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+/* Floating Search Bar spacing */
+.pt-24 {
+  padding-top: 100px;
+}
+
+/* Markers improvements */
+.marker-container {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.marker-container.selected {
+  transform: scale(1.3) translateY(-10px);
+  z-index: 1000 !important;
+}
+
+/* Tap Highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 
 
 .tab-item {

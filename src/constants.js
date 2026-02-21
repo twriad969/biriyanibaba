@@ -9,8 +9,6 @@ export const CATEGORIES = [
   { id: 'other', label: 'অন্যান্য', emoji: '🎁', color: '#64748b' },
 ];
 
-export const PRICE_RANGES = ['৳', '৳৳', '৳৳৳'];
-
 export const TAG_OPTIONS = [
   { id: 'spicy', label: 'spicy 🌶️' },
   { id: 'halal', label: 'halal ✅' },
@@ -21,7 +19,8 @@ export const TAG_OPTIONS = [
 export const WALKING_SPEED = 5; // km/h
 export const DRIVING_SPEED = 30; // km/h
 
-export const BENGALI_NUMBERS = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+export const BENGALI_NUMBERS = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '⁸', '৯'];
 export const toBengaliNumber = (num) => {
+  if (num === undefined || num === null) return '০';
   return num.toString().split('').map(d => BENGALI_NUMBERS[d] || d).join('');
 };

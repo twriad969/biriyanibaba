@@ -29,6 +29,18 @@ export const initDb = async () => {
       )
     `);
     
+    // Create votes table for audit and allowing vote changes
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS votes (
+        id TEXT PRIMARY KEY,
+        location_id TEXT NOT NULL,
+        user_id TEXT NOT NULL,
+        vote_type TEXT NOT NULL, -- 'up' or 'down'
+        created_at TEXT DEFAULT (datetime('now')),
+        UNIQUE(location_id, user_id)
+      )
+    `);
+    
     // Add columns if they don't exist (for existing databases)
     const columns = [
       { name: 'category', type: 'TEXT DEFAULT \'🍛\'' },

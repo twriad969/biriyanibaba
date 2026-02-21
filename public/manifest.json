@@ -1,38 +1,14 @@
 {
-  "name": "বিরিয়ানি Zone",
-  "short_name": "BZone",
+  "name": "Biriyani Hunter",
+  "short_name": "Biriyani Hunter",
+  "description": "আপনার আশেপাশের সেরা বিরিয়ানি ও মসজিদ খুঁজুন",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0f",
-  "theme_color": "#0a0a0f",
   "orientation": "portrait",
+  "background_color": "#0a0a0f",
+  "theme_color": "#f5a623",
   "icons": [
-    {
-      "src": "/pwa-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
-  ],
-  "description": "আপনার আশেপাশের সেরা খাবার আর মসজিদ খুঁজুন",
-  "dir": "ltr",
-  "lang": "bn-BD",
-  "categories": ["lifestyle", "utilities"],
-  "shortcuts": [
-    {
-      "name": "Map",
-      "url": "/",
-      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
-    }
+    { "src": "/vite.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/vite.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
   ]
 }
