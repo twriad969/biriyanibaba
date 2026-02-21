@@ -205,23 +205,115 @@ code, .font-mono {
   100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
-/* Bottom Tab Bar */
-.bottom-tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: calc(80px + env(safe-area-inset-bottom, 0));
-  background: rgba(18, 18, 26, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-bottom: env(safe-area-inset-bottom, 0);
-  z-index: 4000;
+/* User Pulse Dot */
+.user-pulse {
+  width: 14px;
+  height: 14px;
+  background: #3b82f6;
+  border: 3px solid white;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
+
+.user-pulse::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.4);
+  animation: user-pulse-anim 2s infinite;
+}
+
+@keyframes user-pulse-anim {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* Marker Styling */
+.marker-container {
+  width: 44px;
+  height: 44px;
+  background: #12121a;
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.marker-container.selected {
+  border-color: #f5a623;
+  transform: scale(1.15) translateY(-5px);
+  z-index: 1000;
+}
+
+.marker-inner {
+  width: 36px;
+  height: 36px;
+  background: color-mix(in srgb, var(--color) 15%, transparent);
+  color: var(--color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.marker-container .badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #10b981;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 900;
+  border: 2px solid #12121a;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Category Filter Layout */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Better Sheet Transitions */
+.bottom-sheet {
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tap Target Optimization */
+.tap-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Input Styles */
+input, select, textarea {
+  font-size: 16px !important; /* Prevent iOS auto-zoom */
+}
+
+/* Dark Map Fix */
+.dark-map .leaflet-tile-pane {
+  filter: saturate(0.5) brightness(0.6) invert(1) hue-rotate(180deg) contrast(1.1);
+}
+
+/* Font Smoothing */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 
 .tab-item {
   display: flex;
